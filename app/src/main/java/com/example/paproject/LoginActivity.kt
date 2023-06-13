@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.buttonFast.setOnClickListener {
-            val intent = Intent(this,TestActivity::class.java)
+            val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
 

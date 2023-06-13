@@ -2,19 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lesson3Text"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:background="@drawable/background"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:text="Choose Level"
-        android:textStyle="bold"
-        android:textSize="36sp">
+        android:text="Choose Lesson"
+        android:textSize="36sp"
+        android:textStyle="bold">
 
     </TextView>
 
@@ -23,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         app:cardCornerRadius="30dp"
-        app:cardElevation="20dp" >
+        app:cardElevation="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,70 +35,69 @@
             android:padding="24dp">
 
             <TextView
-                android:id="@+id/a1levelText"
+                android:id="@+id/lesson1Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/customedittext"
                 android:padding="10dp"
-                android:text="A1 - Level"
+                android:text="Lesson - 1"
                 android:textAlignment="center"
                 android:textSize="15sp"
-
                 android:textStyle="bold"
                 app:drawableTopCompat="@drawable/baseline_star_24" />
 
             <TextView
-                android:id="@+id/a2levelText"
+                android:id="@+id/lesson2Text"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/customedittext"
                 android:drawableTop="@drawable/baseline_star_24"
                 android:padding="10dp"
-                android:text="A2 - Level"
+                android:text="Lesson - 2"
                 android:textAlignment="center"
                 android:textSize="15sp"
 
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/b1levelText"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/customedittext"
                 android:drawableTop="@drawable/baseline_star_24"
                 android:padding="10dp"
-                android:text="B1 - Level"
+                android:text="Lesson - 3"
                 android:textAlignment="center"
                 android:textSize="15sp"
+                android:textStyle="bold"
 
-                android:textStyle="bold" />
+                />
 
             <TextView
-                android:id="@+id/b2levelText"
+                android:id="@+id/lesson4Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/customedittext"
                 android:drawableTop="@drawable/baseline_star_24"
                 android:padding="10dp"
-                android:text="B2 - Level"
+                android:text="Lesson - 4"
                 android:textAlignment="center"
                 android:textSize="15sp"
 
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/c1levelText"
+                android:id="@+id/lesson5Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/customedittext"
                 android:drawableTop="@drawable/baseline_star_24"
                 android:padding="10dp"
-                android:text="C1 - Level"
+                android:text="Lesson - 5"
                 android:textAlignment="center"
                 android:textSize="15sp"
 
@@ -107,9 +107,7 @@
         </LinearLayout>
 
 
-
     </androidx.cardview.widget.CardView>
-
 
 
 </LinearLayout>

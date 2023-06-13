@@ -1,13 +1,8 @@
 package com.example.paproject
 
-import android.Manifest
-import android.content.pm.PackageManager
-import android.media.MediaPlayer
-import android.media.MediaRecorder
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import com.example.paproject.databinding.ActivityTestBinding
 import com.microsoft.cognitiveservices.speech.CancellationDetails
 import com.microsoft.cognitiveservices.speech.CancellationReason
@@ -15,23 +10,20 @@ import com.microsoft.cognitiveservices.speech.PronunciationAssessmentConfig
 import com.microsoft.cognitiveservices.speech.PropertyId
 import com.microsoft.cognitiveservices.speech.ResultReason
 import com.microsoft.cognitiveservices.speech.SpeechConfig
-import com.microsoft.cognitiveservices.speech.SpeechRecognitionResult
 import com.microsoft.cognitiveservices.speech.SpeechRecognizer
+import com.microsoft.cognitiveservices.speech.SpeechSynthesisCancellationDetails
+import com.microsoft.cognitiveservices.speech.SpeechSynthesisResult
+import com.microsoft.cognitiveservices.speech.SpeechSynthesizer
 import com.microsoft.cognitiveservices.speech.audio.AudioConfig
-import kotlinx.coroutines.awaitAll
-import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.util.concurrent.Future
 import java.util.concurrent.TimeUnit
 
 
 class TestActivity : AppCompatActivity() {
-    lateinit var mr : MediaRecorder
+    /*lateinit var mr : MediaRecorder*/
     private  var speechConfig : SpeechConfig?=null
     private var audioConfig : AudioConfig ? = null
     private var speechRecognizer :SpeechRecognizer ? = null
-
+    private var speechSynthesizer : SpeechSynthesizer ? = null
     private lateinit var binding: ActivityTestBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +31,7 @@ class TestActivity : AppCompatActivity() {
         setContentView(binding.root)
       //  var path = "/data/cache/record.wav"
 
-        var file = File(cacheDir,"record.mp3")
+       /* var file = File(cacheDir,"record.wav")
         mr = MediaRecorder()
 
         binding.button.isEnabled = false
@@ -74,25 +66,30 @@ class TestActivity : AppCompatActivity() {
             mp.prepare()
             mp.start()
 
-        }
+        }*/
 
 
 
         binding.button4.setOnClickListener {
             val pronunciationAssessmentConfig =
-                PronunciationAssessmentConfig.fromJson("{\"referenceText\":\"good morning\",\"gradingSystem\":\"HundredMark\",\"granularity\":\"Phoneme\",\"phonemeAlphabet\":\"IPA\"}")
+                PronunciationAssessmentConfig.fromJson("{\"referenceText\":\"My Name is John\",\"gradingSystem\":\"HundredMark\",\"granularity\":\"Phoneme\",\"phonemeAlphabet\":\"IPA\"}")
 
-            speechConfig = SpeechConfig.fromSubscription("3d6de84a449040a3b6c228536f8c72c8","eastus")
+            speechConfig = SpeechConfig.fromSubscription("4336347ac44143319068962bf19bfe0e","eastus")
             speechConfig?.speechRecognitionLanguage ?:  "en-US"
             audioConfig = AudioConfig.fromDefaultMicrophoneInput()
-
             val speechRecognizer = SpeechRecognizer(
                 speechConfig,
                 audioConfig
             )
-            pronunciationAssessmentConfig.applyTo(speechRecognizer);
-            val task = speechRecognizer.recognizeOnceAsync()
-            val speechRecognitionResult = task.get()
+            pronunciationAssessmentConfig.applyTo(speechRecognizer)
+            val future = speechRecognizer.recognizeOnceAsync()
+            val speechRecognitionResult = future[30, TimeUnit.SECONDS]
+
+
+
+
+          //  val task = speechRecognizer.recognizeOnceAsync()
+           // val speechRecognitionResult = task.get()
             if(speechRecognitionResult.reason == ResultReason.Canceled){
                 val cancellation = CancellationDetails.fromResult(speechRecognitionResult)
                 Log.v("text1", cancellation.toString())
@@ -116,6 +113,37 @@ class TestActivity : AppCompatActivity() {
             pronunciationAssessmentConfig.close();
             speechRecognitionResult.close();
         }
+
+        binding.button5.setOnClickListener {
+            paFunc("ingenious")
+        }
+        binding.button6.setOnClickListener {
+            val text = "action"
+            speechConfig = SpeechConfig.fromSubscription("4336347ac44143319068962bf19bfe0e","eastus")
+            speechConfig?.speechSynthesisVoiceName = "en-US-JasonNeural";
+            val speechSynthesizer = SpeechSynthesizer(speechConfig)
+            val speechSynthesisResult: SpeechSynthesisResult? =
+                speechSynthesizer.SpeakTextAsync(text)?.get()
+
+            if (speechSynthesisResult != null) {
+                if (speechSynthesisResult.reason == ResultReason.SynthesizingAudioCompleted) {
+                    Log.v("result","succeeded")
+                }else if (speechSynthesisResult.reason == ResultReason.Canceled){
+                    val cancellation =
+                        SpeechSynthesisCancellationDetails.fromResult(speechSynthesisResult)
+
+                    Log.v("result", cancellation.reason.toString())
+                    if(cancellation.reason == CancellationReason.Error){
+                        Log.v("Error Code",cancellation.errorCode.toString())
+                        Log.v("Error Details", cancellation.errorDetails.toString())
+
+                    }
+                }
+            }else{
+                Log.v("result", "NULLLLLLLLLLLLLL")
+            }
+        }
+
 
 
 
