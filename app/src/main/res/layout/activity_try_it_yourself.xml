@@ -27,16 +27,17 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <TextView
+            <EditText
                 android:id="@+id/wordText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:textAlignment="center"
                 android:textStyle="bold"
+                android:hint="Enter here"
                 android:textSize="30sp"
                 >
-            </TextView>
+            </EditText>
             <ImageButton
                 android:id="@+id/listenButton"
                 android:layout_width="100dp"

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phoneme Details"
+        android:layout_gravity="center"
+        android:textSize="40sp"
+        android:textStyle="bold"/>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp"
+        android:paddingHorizontal="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phoneme"
+            android:textStyle="bold"
+            android:layout_gravity="start"
+            android:layout_marginLeft="10dp"
+            android:textSize="20sp"
+            android:paddingTop="5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score"
+            android:textStyle="bold"
+            android:layout_gravity="end"
+            android:layout_marginRight="10dp"
+            android:textSize="20sp"
+            android:paddingTop="5dp"/>
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/customedittext">
+            <androidx.recyclerview.widget.RecyclerView
+                android:paddingTop="30dp"
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15dp"
+                android:paddingHorizontal="10dp"/>
+
+
+
+        </LinearLayout>
+
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/dialogCloseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#FF896F"
+        android:text="Close"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+
+</LinearLayout>

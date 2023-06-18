@@ -19,6 +19,12 @@
         android:theme="@style/Theme.PAProject"
         tools:targetApi="31">
         <activity
+            android:name=".TryItYourselfActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomePageActivity"
+            android:exported="false" />
+        <activity
             android:name=".LessonActivity"
             android:exported="false" />
         <activity
